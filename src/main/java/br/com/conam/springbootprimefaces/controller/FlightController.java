@@ -22,6 +22,7 @@ public class FlightController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Flight flight = new Flight();
+	private Flight filtro = new Flight();
 
     private List<Flight> flights = new ArrayList<>();
 
@@ -61,5 +62,13 @@ public class FlightController implements Serializable {
     public void setFlight(Flight flight) {
         this.flight = flight;
     }
+
+	public Flight getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(Flight filtro) {
+		this.filtro = filtro;
+	}
 
 }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:insert name="head">
+	<ui:include src="head.xhtml" />
+</ui:insert>
+
+<h:body class="">
+
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
+	
+	<ui:insert name="menu">
+		<ui:include src="menu.xhtml" />
+	</ui:insert>
+	
+	<!-- MAIN PANEL -->
+	<div id="main" role="main">
+		<!-- RIBBON -->
+		<div id="ribbon">
+			<!-- breadcrumb -->
+			<ol class="breadcrumb">
+				<ui:insert name="breadcrumb" />
+			</ol>
+			<div class="pull-right">
+				<img src="/static/img/logo_interno.png" style="height: 40px;margin-right: -12px;" alt="Conam" />
+			</div>
+		</div>
+		<!-- END RIBBON -->
+
+		<!-- MAIN CONTENT -->
+		<div id="content">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h1 class="page-title txt-color-blueDark">
+						<STRONG><ui:insert name="title_action" /></STRONG>
+					</h1>
+				</div>
+			</div>
+			
+			<h:form>
+			<!-- Exibe a mensagem de sucesso -->
+			<p:growl id="mensagemSucesso" severity="info" showDetail="true" sticky="true" autoUpdate="true" />
+			<!-- Exibe a mensagem de erro -->
+			<p:messages id="mensagemErro" severity="error, warn" showDetail="false" autoUpdate="true" closable="true" />
+			</h:form>
+			<!-- widget grid -->
+			<section id="widget-grid" class="">
+				<!-- START ROW -->
+				<div class="row">
+					<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+								<h2>Dados Básicos</h2>				
+							</header>
+							<div>
+								<div class="widget-body no-padding">
+									<ui:insert name="form_body" />
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+			</section>
+		</div>
+		<!-- END MAIN CONTENT -->
+
+	</div>
+	<!-- END MAIN PANEL -->
+	
+	<ui:insert name="footer">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- PAGE RELATED PLUGIN(S) -->
+	<script src="/static/js/plugin/jquery-form/jquery-form.min.js"></script>
+
+	<ui:insert name="content-script" />
+	
+</h:body>
+
+</html>

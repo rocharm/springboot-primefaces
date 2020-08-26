@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div class="modal fade" id="popupLogout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="divMessageBox animated fadeIn fast" id="MsgBoxBack">
+			<div class="MessageBoxContainer animated fadeIn fast" id="Msg1">
+				<div class="MessageBoxMiddle">
+					<span class="MsgTitle">
+						<i class="fa fa-sign-out txt-color-orangeDark"></i> Sair 
+						<span class="txt-color-orangeDark"><strong><h:outputText value="#{request.remoteUser}" /></strong></span>?
+					</span>
+					<p class="pText">Você pode melhorar sua segurança ainda mais depois de fazer o logout , fechando este navegador.</p>
+					<div class="MessageBoxButtonSection" style="text-align: right">
+						<h:form acceptcharset="ISO-8859-1">
+							<table align="right">
+								<tr>
+									<td>
+										<h:commandLink value="" onclick="javascript: $('#popupLogout').modal('hide');" styleClass="btn btn-default btn-lg botTempo">
+											<f:ajax ></f:ajax>
+											<strong><h:outputText value="Não" /></strong>
+										</h:commandLink>
+									</td>
+									<td>
+										<h:outputText value="&#160;" />
+									</td>
+									<td>
+										<h:commandLink value="" action="#{loginController.logout()}" styleClass="btn btn-default btn-lg botTempo">
+											<strong><h:outputText value="Sim" /></strong>
+										</h:commandLink>
+						            </td>
+					            </tr>
+				            </table>
+			            </h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:composition template="template/template_login.xhtml">
+		<ui:define name="content">
+			<!-- Exibe a mensagem de sucesso -->
+			<p:growl id="mensagemSucesso" for="mensagemSucesso" showDetail="true" sticky="true" autoUpdate="true" />
+			<!-- Exibe a mensagem de erro -->
+			<p:messages id="mensagemErro" for="mensagemErro" showDetail="false" autoUpdate="true" closable="true" />
+				
+			<div class="well no-padding">
+				<h:form id="form" class="smart-form client-form">
+					<header style="border-color: #45474b!important; background: #4c4f53; color: white; font-weight: bold !important">
+						Esqueci Minha Senha
+					</header>
+					<fieldset>
+						<section>
+							<label class="label">Digite o seu e-mail</label>
+							<label class="input"> <i class="icon-append fa fa-envelope"></i>
+								<h:inputText id="email" value="#{loginController.email}" />
+							</label>
+							<div class="note">
+								<a href="#{request.contextPath}/public/login.xhtml">Lembrei minha senha!</a>
+							</div>
+						</section>
+					</fieldset>
+					<footer style="background: white;">
+						<h:commandLink value="" styleClass="btn btn-primary btn-lg pull-right"
+							action="#{loginController.recuperarSenha()}"  onclick="return $('#form').valid()">
+			            	<i class="fa fa-refresh"></i>
+			            	<h:outputText value="  Enviar Senha" />
+			            </h:commandLink>
+					</footer>
+				</h:form>
+			</div>
+		</ui:define>
+		
+		<ui:define name="content-script">
+	
+		</ui:define>
+	</ui:composition>
+</html>

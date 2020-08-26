@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<ui:insert name="head">
+		<ui:include src="head_login.xhtml" />
+	</ui:insert>
+
+	<body class="animated fadeInDown" style="background: #f4f4f4!important;">
+		<header id="header">
+			<div id="logo-group">
+				<span id="logo"> <img src="/static/img/logo.gif" alt="Logo" style="width: 185px;margin-top: -20px;" /> </span>
+			</div>
+			<div class="titleHeadLogin">
+				<span>Módulo de Compras e Licitações</span><br />
+				<span style="font-size: 15px">#{loginController.nomeEntidade}</span>
+			</div>
+		</header>
+		<div id="main" role="main" style="background: #f4f4f4!important;">
+			<!-- MAIN CONTENT -->
+			<div id="content" class="container">
+				<div class="row">
+					<table style="width: 100%">
+						<tr>
+							<td align="center">
+								
+								<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4" style="float: inherit;">
+									<!-- Conteúdo -->
+									<ui:insert name="content" />
+								</div>
+								
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<!--================================================== -->	
+
+		<!-- Footer -->
+		<ui:insert name="footer">
+			<ui:include src="footer_login.xhtml" />
+		</ui:insert>
+
+		<!-- Script -->
+		<ui:insert name="content-script" />
+
+	</body>
+
+</html>

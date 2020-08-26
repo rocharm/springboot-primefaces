@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:hf="http://highfaces.org">
+
+<ui:composition template="/pages/templates/template.xhtml">
+	<ui:define name="content">
+		<div id="ribbon">
+			<!-- breadcrumb -->
+			<ol class="breadcrumb"></ol>
+		</div>
+		<div id="content">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="text-center error-box">
+								<h1 class="error-text tada animated"><i class="fa fa-times-circle text-danger error-icon-shadow"></i> Error 101</h1>
+								<h2 class="font-xl"><strong>Aviso!</strong></h2>
+								<br />
+								<p class="lead semi-bold">
+									<strong>Você não possui permissão para acessar essa página.</strong><br /><br />
+								</p>
+								<ul class="error-search text-left font-md">
+						            <li><a href="#{request.contextPath}/pages/dashboard/dashboard.xhtml"><small>Dashboard <i class="fa fa-arrow-right"></i></small></a></li>
+						            <li><a href="javascript:window.history.back();"><small>Retornar</small></a></li>
+						        </ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+	
+	<ui:define name="content-script">
+		<!-- PAGE RELATED PLUGIN(S) -->
+		<script src="#{request.contextPath}/resources/js/plugin/jquery-form/jquery-form.min.js"></script>
+		
+		<script type="text/javascript">
+		// <![CDATA[
+		$('#itemMenuDashboard').addClass("active");
+		// ]]>
+		</script>
+	</ui:define>
+		
+</ui:composition>
+</html>

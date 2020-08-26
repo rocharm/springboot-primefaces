@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:cadastro="http://java.sun.com/jsf/composite/components/cadastro"
+				template="/pages/templates/cadastroTemplate.xhtml">
+	
+	<ui:define name="title_action">
+		#{flightController.flight.id == null ? 'Inclusão de Banco' : 'Alteração de Banco'}
+	</ui:define>
+	
+	<ui:define name="breadcrumb">
+		<li>Cadastro</li>
+		<li>Banco</li>
+		<li>#{flightController.flight.id == null ? 'Inclusão' : 'Alteração'}</li>
+	</ui:define>
+	
+	<ui:define name="form_body">
+		<cadastro:flightDados id="flightDados" readonly="false" managedBean="#{flightController}"/>
+	</ui:define>
+	
+	<ui:define name="content-script">
+		<script type="text/javascript">
+			$('#itemMenuCadastro-Banco').addClass("active");
+		</script>
+	</ui:define>
+		
+</ui:composition>

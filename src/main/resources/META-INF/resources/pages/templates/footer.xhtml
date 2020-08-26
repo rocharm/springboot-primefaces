@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+		
+		<!-- PAGE FOOTER -->
+		<div class="page-footer">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6">
+					<span class="txt-color-white">Conam - Módulo de Compras e Licitações - #{sessaoMCL.versao} © 2020</span>
+				</div>
+				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
+					<div class="txt-color-white inline-block">
+						<i class="txt-color-blueLight hidden-mobile">Último Acesso <i class="fa fa-clock-o"></i> <strong><h:outputText value="#{sessaoMCL.ultimoAcessoFormatado}" /></strong> </i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE FOOTER -->
+		
+		<!--  USER AREA -->
+		<div id="shortcut">
+			<ul>
+				<li>
+					<a href="#{request.contextPath}/pages/suporte/operador/operador_senha_editar.xhtml" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>Meu Usuário</span> </span> </a>
+				</li>
+			</ul>
+		</div>
+		<!--  END USER AREA -->
+		
+		<!-- SCRIPTS -->
+		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="/static/js/plugin/pace/pace.min.js"></script>
+
+		
+
+		<!-- IMPORTANT: APP CONFIG -->
+		<script src="/static/js/app.config.js"></script>
+
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+		<script src="/static/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
+
+		<!-- BOOTSTRAP JS -->
+		<script src="/static/js/bootstrap/bootstrap.min.js"></script>
+
+		<!-- CUSTOM NOTIFICATION -->
+		<script src="/static/js/notification/SmartNotification.min.js"></script>
+		
+		<!-- JARVIS WIDGETS -->
+		<script src="/static/js/smartwidgets/jarvis.widget.min.js"></script>
+		
+		<!-- EASY PIE CHARTS -->
+		<script src="/static/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+		<!-- SPARKLINES -->
+		<script src="/static/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+		<!-- JQUERY VALIDATE -->
+		<script src="/static/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+		<!-- JQUERY MASKED INPUT -->
+		<script src="/static/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+		<!-- JQUERY SELECT2 INPUT -->
+		<script src="/static/js/plugin/select2/select2.min.js"></script>
+
+		<!-- JQUERY UI + Bootstrap Slider -->
+		<script src="/static/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+		<!-- browser msie issue fix -->
+		<script src="/static/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+		<!-- FastClick: For mobile devices -->
+		<script src="/static/js/plugin/fastclick/fastclick.min.js"></script>
+
+		<!--[if IE 8]>
+
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+		<![endif]-->
+
+		<!-- MAIN APP JS FILE -->
+		<script src="/static/js/app.min.js"></script>
+
+		<!-- PAGE RELATED PLUGIN(S) -->
+		<script src="/static/js/plugin/datatables/jquery.dataTables.min.js"></script>
+		<script src="/static/js/plugin/datatables/dataTables.colVis.min.js"></script>
+		<script src="/static/js/plugin/datatables/dataTables.tableTools.min.js"></script>
+		<script src="/static/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+		<script src="/static/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+		<!-- END SCRIPTS -->
+		
+		<script>
+			$('.telefone').focusout(function(){
+			    var phone, element;
+			    element = $(this);
+			    element.unmask();
+			    phone = element.val().replace(/\D/g, '');
+			    if(phone.length > 10) {
+			        element.mask("(99) 99999-999?9");
+			    } else {
+			        element.mask("(99) 9999-9999?9");
+			    }
+			}).trigger('focusout');
+		</script>
+		<script>
+			PrimeFaces.locales['pt'] = {  
+                closeText: 'Fechar',  
+                prevText: '&lt;',  
+                nextText: '&gt;',  
+                currentText: 'Começo',  
+                monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],  
+                monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],  
+                dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],  
+                dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],  
+                dayNamesMin: ['D','S','T','Q','Q','S','S'],  
+                weekHeader: 'Semana',  
+                firstDay: 1,  
+                isRTL: false,  
+                showMonthAfterYear: false,  
+                yearSuffix: '',  
+                timeOnlyTitle: 'Só Horas',  
+                timeText: 'Tempo',  
+                hourText: 'Hora',  
+                minuteText: 'Minuto',  
+                secondText: 'Segundo',  
+                currentText: 'Data Atual',  
+                ampm: false,  
+                month: 'Mês',  
+                week: 'Semana',  
+                day: 'Dia',  
+                allDayText : 'Todo Dia'  
+            };
+		</script>
+		<script>
+			/*
+			* função para permitir a digitação de números decimais e inteiros
+			*/
+			function ForceNumericInput(event, This, AllowDecimal, AllowMinus){
+			
+				if(arguments.length == 1)
+				{
+					var s = This.value;
+					// garante que o sinal de "-" seja o primeiro do índice
+					var i = s.lastIndexOf("-");
+					if(i == -1)
+					return;
+					if(i != 0)
+					This.value = s.substring(0,i)+s.substring(i+1);
+					return;
+				}
+				switch(event.keyCode)
+				{
+					case 8:     // backspace
+					case 9:     // tab
+					case 37:    // left arrow
+					case 39:    // right arrow
+					case 46:    // delete
+					case 110:    // virgula
+					event.returnValue = true;
+					return;
+				}
+				if(event.keyCode == 189)     // sinal de número de negativo
+				{
+					if(AllowMinus == false)
+					{
+						CancelEventExecution(event);
+						return;
+					}
+					// aguarda até que o controle tenha sido atualizado
+					var s = "ForceNumericInput(document.getElementById('"+This.id+"'))";
+					setTimeout(s, 250);
+					return;
+				}
+				if(AllowDecimal &amp;&amp; event.keyCode == 188)
+				{
+					if(This.value.indexOf(",") &gt;= 0)
+					{
+						// restringe a digitação de apenas uma vírgula
+						CancelEventExecution(event);
+						return;
+					}
+					event.returnValue = true;
+					return;
+				}
+				// permite caracteres entre 0 e 9
+				if(event.keyCode &gt;= 48 &amp;&amp; event.keyCode &lt;= 57)
+				{
+					event.returnValue = true;
+					return;
+				}
+				if(event.keyCode &gt;= 96 &amp;&amp; event.keyCode &lt;= 105)
+				{
+					event.returnValue = true;
+					return;
+				}
+				CancelEventExecution(event);
+			}
+				/*
+				* Cancela a execução de uma function mapeada por um evento
+				*/
+			function CancelEventExecution(event){
+				if (navigator.appName == "Netscape")
+				{
+					event.preventDefault();
+				}
+				else
+				{
+					event.returnValue = false;
+				}
+			}
+		 </script>
+</html>

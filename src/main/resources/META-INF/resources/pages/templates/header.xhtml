@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+		
+		<!-- HEADER -->
+		<header id="header" style="z-index:200">
+			<div id="logo-group">
+				<!-- PLACE YOUR LOGO HERE -->
+				<span id="logo" style="text-align: center;"> 
+					<p:graphicImage value="#{sessaoMCL.image}" style="width: 65px; height: 65px" />
+				</span>
+				<!-- END LOGO PLACEHOLDER -->
+			</div>
+			<!-- projects dropdown -->
+			<div class="project-context hidden-xs">
+
+				<span class="label"></span>
+				<span class="menu-item-parent">
+					<STRONG>
+						<font size="5">
+							<h:outputText value="#{sessaoMCL.entidade.nome}" />
+						</font>
+					</STRONG>
+				</span>
+				<h:link outcome="/pages/configuracao/configuracao_editar">
+					Data de Trabalho: <h:outputText value="#{sessaoMCL.dataUsoFormatada}" />
+				</h:link>
+			</div>
+			<!-- end projects dropdown -->
+			
+
+			<!-- pulled right: nav area -->
+			<div class="pull-right">
+				
+				<!-- collapse menu button -->
+				<div id="hide-menu" class="btn-header pull-right">
+					<span> <a href="javascript:void(0);" data-action="toggleMenu" title="Recolher Menu"><i class="fa fa-reorder" style="cursor: pointer"></i></a> </span>
+				</div>
+				<!-- end collapse menu -->
+
+				<!-- logout button -->
+				<div id="logout" class="btn-header transparent pull-right">
+					<span> <a href="#" title="Sair" data-toggle="modal" data-target="#popupLogout"><i class="fa fa-sign-out" style="cursor: pointer" ></i></a> </span>
+				</div>
+				<!-- end logout button -->
+
+				<!-- fullscreen button -->
+				<div id="fullscreen" class="btn-header transparent pull-right">
+					<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Tela Cheia"><i class="fa fa-arrows-alt" style="cursor: pointer"></i></a> </span>
+				</div>
+				<!-- end fullscreen button -->
+			
+			</div>
+			<!-- end pulled right: nav area -->
+
+		</header>
+		<!-- END HEADER -->
+		
+		<!-- Popup Logout -->
+		<ui:insert name="popupLogout">
+			<ui:include src="../../public/popupLogout.xhtml" />
+		</ui:insert>
+		
+</html>

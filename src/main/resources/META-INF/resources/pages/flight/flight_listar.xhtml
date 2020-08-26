@@ -1,0 +1,88 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:composition template="/pages/templates/consultaTemplate.xhtml">
+		<ui:define name="title_sufix">Consulta de Banco</ui:define>
+		<ui:define name="button_insert"> Novo Banco</ui:define>
+		<ui:param name="managedBean" value="#{flightController}" />
+		<ui:param name="renderBotaoIncluir" value="true" />
+		<ui:param name="renderBotaoExcluir" value="true" />
+		<ui:param name="renderBotaoEditar" value="true" />
+		<ui:param name="renderBotaoExibir" value="true" />
+		<ui:param name="renderPanelFilter" value="true" />
+		
+		<ui:define name="breadcrumb">
+			<li>Arquivos Auxiliares</li>
+			<li>Banco</li>
+			<li>Consultar</li>
+		</ui:define>
+		
+		<ui:define name="filter">
+			<fieldset>
+				<div class="row">
+					<section class="col col-4">
+						<p:outputLabel for="codigo" value="Código do Banco" styleClass="label" />
+						<label class="input">
+							<p:inputText id="codigo" value="#{managedBean.filtro.airline}" />
+						</label>
+					</section>
+					<section class="col col-4">
+						<p:outputLabel for="nome" value="Nome do Banco" styleClass="label" />
+						<label class="input">
+							<p:inputText id="nome" value="#{managedBean.filtro.fromAirport}" />
+						</label>
+					</section>
+					<section class="col col-4">
+						<p:outputLabel for="nomeAbreviado" value="Nome Abreviado" styleClass="label" />
+						<label class="input">
+							<p:inputText id="nomeAbreviado" value="#{managedBean.filtro.toAirport}" />
+						</label>
+					</section>
+				</div>
+			</fieldset>
+		</ui:define>
+		
+		<ui:define name="table_columns">
+	         <p:column headerText="Id" width="10%">
+                 <h:outputText value="#{flight.id}"/>
+             </p:column>
+             <p:column headerText="Airline">
+                 <h:outputText value="#{flight.airline}"/>
+             </p:column>
+             <p:column headerText="FromAirport">
+                 <h:outputText value="#{flight.fromAirport}"/>
+             </p:column>
+             <p:column headerText="ToAirport">
+                 <h:outputText value="#{flight.toAirport}"/>
+             </p:column>
+             <p:column headerText="ScheduledDateTime">
+                 <h:outputText value="#{flight.scheduledDateTime}">
+                     <f:convertDateTime pattern="yyyy-MM-dd hh:mm:ss"/>
+                 </h:outputText>
+             </p:column>
+             <p:column headerText="EstimatedDateTime">
+                 <h:outputText value="#{flight.estimatedDateTime}">
+                     <f:convertDateTime pattern="yyyy-MM-dd hh:mm:ss"/>
+                 </h:outputText>
+             </p:column>
+             <p:column headerText="ActualDateTime">
+                 <h:outputText value="#{flight.actualDateTime}">
+                     <f:convertDateTime pattern="yyyy-MM-dd hh:mm:ss"/>
+                 </h:outputText>
+             </p:column>
+		</ui:define>
+
+		<ui:define name="content-script">
+			<script type="text/javascript">
+			// <![CDATA[
+				$('#itemMenuCadastro-Banco').addClass("active");
+			// ]]>
+			</script>
+		</ui:define>
+	</ui:composition>
+	
+</ui:component>
