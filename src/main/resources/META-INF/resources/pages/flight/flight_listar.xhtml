@@ -6,8 +6,8 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:composition template="/pages/templates/consultaTemplate.xhtml">
-		<ui:define name="title_sufix">Consulta de Banco</ui:define>
-		<ui:define name="button_insert"> Novo Banco</ui:define>
+		<ui:define name="title_sufix">Consulta de Flight</ui:define>
+		<ui:define name="button_insert"> Novo Flight</ui:define>
 		<ui:param name="managedBean" value="#{flightController}" />
 		<ui:param name="renderBotaoIncluir" value="true" />
 		<ui:param name="renderBotaoExcluir" value="true" />
@@ -17,7 +17,7 @@
 		
 		<ui:define name="breadcrumb">
 			<li>Arquivos Auxiliares</li>
-			<li>Banco</li>
+			<li>Flight</li>
 			<li>Consultar</li>
 		</ui:define>
 		
@@ -25,21 +25,9 @@
 			<fieldset>
 				<div class="row">
 					<section class="col col-4">
-						<p:outputLabel for="codigo" value="Código do Banco" styleClass="label" />
+						<p:outputLabel for="airline" value="Airline" styleClass="label" />
 						<label class="input">
-							<p:inputText id="codigo" value="#{managedBean.filtro.airline}" />
-						</label>
-					</section>
-					<section class="col col-4">
-						<p:outputLabel for="nome" value="Nome do Banco" styleClass="label" />
-						<label class="input">
-							<p:inputText id="nome" value="#{managedBean.filtro.fromAirport}" />
-						</label>
-					</section>
-					<section class="col col-4">
-						<p:outputLabel for="nomeAbreviado" value="Nome Abreviado" styleClass="label" />
-						<label class="input">
-							<p:inputText id="nomeAbreviado" value="#{managedBean.filtro.toAirport}" />
+							<p:inputText id="airline" value="#{managedBean.filtro.airline}" />
 						</label>
 					</section>
 				</div>
@@ -47,31 +35,28 @@
 		</ui:define>
 		
 		<ui:define name="table_columns">
-	         <p:column headerText="Id" width="10%">
-                 <h:outputText value="#{flight.id}"/>
-             </p:column>
              <p:column headerText="Airline">
-                 <h:outputText value="#{flight.airline}"/>
+                 <h:outputText value="#{item.airline}"/>
              </p:column>
-             <p:column headerText="FromAirport">
-                 <h:outputText value="#{flight.fromAirport}"/>
+             <p:column headerText="From Airport">
+                 <h:outputText value="#{item.fromAirport}"/>
              </p:column>
-             <p:column headerText="ToAirport">
-                 <h:outputText value="#{flight.toAirport}"/>
+             <p:column headerText="To Airport">
+                 <h:outputText value="#{item.toAirport}"/>
              </p:column>
-             <p:column headerText="ScheduledDateTime">
-                 <h:outputText value="#{flight.scheduledDateTime}">
-                     <f:convertDateTime pattern="yyyy-MM-dd hh:mm:ss"/>
+             <p:column headerText="Scheduled Date Time">
+                 <h:outputText value="#{item.scheduledDateTime}">
+                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                  </h:outputText>
              </p:column>
-             <p:column headerText="EstimatedDateTime">
-                 <h:outputText value="#{flight.estimatedDateTime}">
-                     <f:convertDateTime pattern="yyyy-MM-dd hh:mm:ss"/>
+             <p:column headerText="Estimated Date Time">
+                 <h:outputText value="#{item.estimatedDateTime}">
+                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                  </h:outputText>
              </p:column>
-             <p:column headerText="ActualDateTime">
-                 <h:outputText value="#{flight.actualDateTime}">
-                     <f:convertDateTime pattern="yyyy-MM-dd hh:mm:ss"/>
+             <p:column headerText="Actual Date Time">
+                 <h:outputText value="#{item.actualDateTime}">
+                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                  </h:outputText>
              </p:column>
 		</ui:define>
@@ -79,7 +64,7 @@
 		<ui:define name="content-script">
 			<script type="text/javascript">
 			// <![CDATA[
-				$('#itemMenuCadastro-Banco').addClass("active");
+				$('#itemMenuCadastro-Flight').addClass("active");
 			// ]]>
 			</script>
 		</ui:define>

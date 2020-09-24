@@ -108,7 +108,7 @@
 							<div>
 								<!-- widget content -->
 								<div class="widget-body no-padding">
-									<p:dataTable id="consultaTable" var="item" value="#{managedBean.flights}" widgetVar="consultaTable" reflow="true" paginator="true" rows="10" 
+									<p:dataTable id="consultaTable" var="item" value="#{managedBean.listar()}" widgetVar="consultaTable" reflow="true" paginator="true" rows="10" 
 										rowsPerPageTemplate="5,10,15,20,100" emptyMessage="Não constam registros." tableStyleClass="table table-striped" 
 										styleClass="table-reflow-desktop" paginatorPosition="bottom" lazy="true"
 										paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" 

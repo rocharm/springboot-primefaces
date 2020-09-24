@@ -7,12 +7,12 @@
 				template="/pages/templates/cadastroTemplate.xhtml">
 	
 	<ui:define name="title_action">
-		#{flightController.flight.id == null ? 'Inclusão de Banco' : 'Alteração de Banco'}
+		#{flightController.flight.id == null ? 'Inclusão de Flight' : 'Alteração de Flight'}
 	</ui:define>
 	
 	<ui:define name="breadcrumb">
 		<li>Cadastro</li>
-		<li>Banco</li>
+		<li>Flight</li>
 		<li>#{flightController.flight.id == null ? 'Inclusão' : 'Alteração'}</li>
 	</ui:define>
 	
@@ -22,7 +22,7 @@
 	
 	<ui:define name="content-script">
 		<script type="text/javascript">
-			$('#itemMenuCadastro-Banco').addClass("active");
+			$('#itemMenuCadastro-Flight').addClass("active");
 		</script>
 	</ui:define>
 		

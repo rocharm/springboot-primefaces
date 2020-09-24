@@ -1,73 +1,131 @@
 package br.com.conam.springbootprimefaces.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.com.conam.springbootprimefaces.filter.ConsultaLazyDataModel;
+import br.com.conam.springbootprimefaces.filter.FlightFiltro;
 import br.com.conam.springbootprimefaces.model.Flight;
-import br.com.conam.springbootprimefaces.repository.FlightRepository;
+import br.com.conam.springbootprimefaces.service.FlightService;
 
 @Named
 @ViewScoped
 public class FlightController implements Serializable {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Autowired
+	private FlightService flightService;
+
+	@Autowired
+	private ConsultaLazyDataModel<Flight> flightList;
+
+	@Autowired
+	private FlightFiltro filtro;
+
 	private Flight flight = new Flight();
-	private Flight filtro = new Flight();
 
-    private List<Flight> flights = new ArrayList<>();
+	private final String EDITAR = "/pages/flight/flight_editar";
+	private final String LISTAR = "/pages/flight/flight_listar";
+	private final String EXIBIR = "/pages/flight/flight_exibir";
 
-    @Autowired
-    private FlightRepository flightRepository;
+	@PostConstruct
+	public void init() {
+		flightList.setFiltro(filtro);
+	}
 
-    public void fetchAll() {
-        flights = flightRepository.findAll();
-    }
+	/**
+	 * 
+	 * @return
+	 */
+	public String incluir() {
+		flight = new Flight();
+		return EDITAR;
+	}
 
-    public void save() {
-        flightRepository.save(flight);
-        flight = new Flight();
-        flights = flightRepository.findAll();
-    }
+	/**
+	 * 
+	 * @param flight
+	 * @return
+	 */
+	public String editar(Flight flight) {
+		this.flight = flight;
+		return EDITAR;
+	}
+	
+	/**
+	 * 
+	 * @param flight
+	 * @return
+	 */
+	public String exibir(Flight flight) {
+		this.flight = flight;
+		return EXIBIR;
+	}
 
-    public void edit(Flight flight) {
-        this.flight = flight;
-    }
+	/**
+	 * 
+	 * @return
+	 */
+	public String salvar() {
+		if(flight.getId() == null) {
+			flightService.incluir(flight);
+		} else {
+			flightService.alterar(flight);
+		}
+		return LISTAR;
+	}
 
-    public void refresh() {
-        flight = new Flight();
-    }
+	/**
+	 * 
+	 * @param flight
+	 */
+	public void excluir(Flight flight) {
+		flightService.excluir(flight);
+	}
 
-    public List<Flight> getFlights() {
-        return flights;
-    }
+	/**
+	 * 
+	 * @return
+	 */
+	public String voltar() {
+		return LISTAR;
+	}
 
-    public void setFlights(List<Flight> flights) {
-        this.flights = flights;
-    }
+	/**
+	 * Método para a consulta padrão
+	 * 
+	 * @return lista Processo
+	 */
+	public ConsultaLazyDataModel<Flight> listar() {
+		return flightList;
+	}
 
-    public Flight getFlight() {
-        return flight;
-    }
+	/******************************************************************************************************
+	 * GET e SET
+	 ******************************************************************************************************/
 
-    public void setFlight(Flight flight) {
-        this.flight = flight;
-    }
+	public Flight getFlight() {
+		return flight;
+	}
 
-	public Flight getFiltro() {
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
+	public FlightFiltro getFiltro() {
 		return filtro;
 	}
 
-	public void setFiltro(Flight filtro) {
+	public void setFiltro(FlightFiltro filtro) {
 		this.filtro = filtro;
 	}
 
