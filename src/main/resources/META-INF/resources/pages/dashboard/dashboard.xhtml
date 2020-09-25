@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:hf="http://highfaces.org">
+
+<ui:composition template="../templates/template.xhtml">
+	<ui:define name="content">
+		<!-- MAIN PANEL -->
+		<div id="main" role="main">
+			<!-- RIBBON -->
+			<div id="ribbon">
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li>Dashboard</li>
+				</ol>
+				<div class="pull-right">
+					<img src="#{request.contextPath}/resources/img/logo_interno.png" style="height: 40px;margin-right: -12px;" alt="Conam" />
+				</div>
+			</div>
+			<!-- END RIBBON -->
+
+			<!-- MAIN CONTENT -->
+			<div id="content">
+				<!-- widget grid -->
+				<section id="widget-filtro" class="">
+					<!-- START ROW -->
+					<div class="row">
+						
+					</div>
+				</section>
+			</div>
+			<!-- END MAIN CONTENT -->
+
+		</div>
+		<!-- END MAIN PANEL -->
+		
+	</ui:define>
+	
+	<ui:define name="content-script">
+		<!-- PAGE RELATED PLUGIN(S) -->
+		<script src="#{request.contextPath}/resources/js/plugin/jquery-form/jquery-form.min.js"></script>
+		
+		<script type="text/javascript">
+		// <![CDATA[
+		$('#itemMenuDashboard').addClass("active");
+		// ]]>
+		</script>
+		
+		<style>
+			.fc-today-button {
+				display: none;
+			}
+			.fc .fc-button-group>* {
+				display: none;
+			}
+			
+			.fc-day-grid-event .fc-time {
+				display: none;
+			}
+		</style>
+	</ui:define>
+		
+</ui:composition>
+</html>
