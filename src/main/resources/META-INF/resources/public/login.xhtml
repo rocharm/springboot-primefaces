@@ -16,7 +16,7 @@
 			<p:messages id="mensagemErro" for="mensagemErro" showDetail="false" autoUpdate="true" closable="true" />
 			
 			<div class="well no-padding">
-				<h:form id="loginForm" styleClass="smart-form client-form">
+				<h:form id="loginForm" prependId="false" styleClass="smart-form client-form">
 					<header style="border-color: #45474b!important; background: #4c4f53; color: white; font-weight: bold !important">
 						Login
 					</header>
@@ -24,14 +24,14 @@
 						<section>
 							<label class="label">Usuário</label>
 							<label class="input"> <i class="icon-append fa fa-user"></i>
-								<p:inputText id="j_username" value="#{loginController.login}" style="cursor: auto" />
+								<p:inputText id="username" style="cursor: auto" />
 								<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Insira o seu usuário</b></label>
 						</section>
 
 						<section>
 							<label class="label">Senha</label>
 							<label class="input"> <i class="icon-append fa fa-lock"></i>
-								<p:password id="j_password" value="#{loginController.senha}" style="cursor: auto" />
+								<p:password id="password" style="cursor: auto" />
 								<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Digite sua senha</b> </label>
 							<div class="note">
 								<a href="#{request.contextPath}/public/recuperarSenha.xhtml">Esqueci minha senha</a>
@@ -40,9 +40,8 @@
 						
 					</fieldset>
 					<footer style="background: white;">
-						<h:commandLink id="btnEntrar" value="Entrar" action="#{loginController.fazerLogin}" styleClass="btn btn-primary btn-lg pull-right" />
+						<p:commandButton id="submit" value="Entrar" ajax="false" styleClass="btn btn-primary btn-lg pull-right" />
 					</footer>
-					<p:defaultCommand target="btnEntrar" />
 				</h:form>
 			</div>
 		</ui:define>

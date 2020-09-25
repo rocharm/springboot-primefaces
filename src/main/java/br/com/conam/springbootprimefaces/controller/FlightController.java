@@ -3,6 +3,7 @@ package br.com.conam.springbootprimefaces.controller;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.RequestScoped;
 import javax.faces.view.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import br.com.conam.springbootprimefaces.filter.FlightFiltro;
 import br.com.conam.springbootprimefaces.model.Flight;
 import br.com.conam.springbootprimefaces.service.FlightService;
 
-@ViewScoped
+@RequestScoped
 @RestController
 @RequestMapping("flight")
 public class FlightController implements Serializable {

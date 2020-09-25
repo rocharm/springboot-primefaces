@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/public/login.xhtml")
 				.permitAll()
 				.failureUrl("/public/login.xhtml?error=true")
-				.defaultSuccessUrl("/starter.jsf")
+				.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
 				.and()
 				.logout()
 				.logoutSuccessUrl("/public/login.xhtml")
@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected UserDetailsService userDetailsService() {
 		InMemoryUserDetailsManager result = new InMemoryUserDetailsManager();
