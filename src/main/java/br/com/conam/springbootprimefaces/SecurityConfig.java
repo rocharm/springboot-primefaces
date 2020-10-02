@@ -19,23 +19,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) {
 		try {
 			http.csrf().disable();
+//			http
+//				.userDetailsService(userDetailsService())
+//				.authorizeRequests()
+//				.antMatchers("/").permitAll()
+//				.antMatchers("/**.jsf").permitAll()
+//				.antMatchers("/javax.faces.resource/**").permitAll()
+//				.anyRequest().authenticated()
+//				.and()
+//				.formLogin()
+//				.loginPage("/public/login.xhtml")
+//				.permitAll()
+//				.failureUrl("/public/login.xhtml?error=true")
+//				.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
+//				.and()
+//				.logout()
+//				.logoutSuccessUrl("/public/login.xhtml")
+//				.deleteCookies("JSESSIONID");
 			http
-				.userDetailsService(userDetailsService())
-				.authorizeRequests()
-				.antMatchers("/").permitAll()
-				.antMatchers("/**.jsf").permitAll()
-				.antMatchers("/javax.faces.resource/**").permitAll()
-				.anyRequest().authenticated()
-				.and()
-				.formLogin()
-				.loginPage("/public/login.xhtml")
-				.permitAll()
-				.failureUrl("/public/login.xhtml?error=true")
-				.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
-				.and()
-				.logout()
-				.logoutSuccessUrl("/public/login.xhtml")
-				.deleteCookies("JSESSIONID");
+			.authorizeRequests()
+			.antMatchers("/**").permitAll();
 		}
 		catch (Exception ex) {
 			throw new RuntimeException(ex);

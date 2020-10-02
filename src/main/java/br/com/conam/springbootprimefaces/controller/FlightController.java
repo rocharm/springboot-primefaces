@@ -1,11 +1,11 @@
 package br.com.conam.springbootprimefaces.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.RequestScoped;
-import javax.faces.view.ViewScoped;
 
+import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import br.com.conam.springbootprimefaces.filter.FlightFiltro;
 import br.com.conam.springbootprimefaces.model.Flight;
 import br.com.conam.springbootprimefaces.service.FlightService;
 
-@RequestScoped
+@ViewAccessScoped
 @RestController
 @RequestMapping("flight")
 public class FlightController implements Serializable {
@@ -116,10 +116,10 @@ public class FlightController implements Serializable {
 	}
 	
 	@GetMapping
-	public ResponseEntity<String> obter() {
-		String finalResponse = "teste";
+	public ResponseEntity<List<Flight>> obter() {
+		List<Flight> lista = flightService.findByAirline(null);
         
-		return new ResponseEntity<String>(finalResponse, HttpStatus.OK);
+		return new ResponseEntity<List<Flight>>(lista, HttpStatus.OK);
 	}
 
 	/******************************************************************************************************

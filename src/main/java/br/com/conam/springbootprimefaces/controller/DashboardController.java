@@ -19,7 +19,7 @@ import br.com.conam.springbootprimefaces.service.FlightService;
 
 @ViewScoped
 @RestController
-@RequestMapping("flight")
+@RequestMapping("dashboard")
 public class DashboardController implements Serializable {
 
 	/**
