@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 
@@ -84,9 +85,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/public/**").permitAll()
 			.antMatchers("/static/**").permitAll()
 			.antMatchers("/javax.faces.resource/**").permitAll()
-			.antMatchers(HttpMethod.POST, "/auth").permitAll()
+			.antMatchers(HttpMethod.POST, "/login").permitAll()
+			.antMatchers("/api/**").permitAll()
 			.anyRequest().authenticated()
-			.and().formLogin()
+			.and()
+			.formLogin()
 			.loginPage("/public/login.xhtml").permitAll()
 			.failureUrl("/public/login.xhtml?error=true")
 			.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
