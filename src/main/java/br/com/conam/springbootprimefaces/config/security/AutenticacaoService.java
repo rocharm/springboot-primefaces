@@ -1,4 +1,4 @@
-package br.com.conam.springbootprimefaces.service;
+package br.com.conam.springbootprimefaces.config.security;
 
 import java.util.Optional;
 

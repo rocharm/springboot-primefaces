@@ -1,15 +1,19 @@
-package br.com.conam.springbootprimefaces;
+package br.com.conam.springbootprimefaces.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.com.conam.springbootprimefaces.service.AutenticacaoService;
+
 
 /**
  * Spring Security Configuration.
@@ -20,6 +24,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private AutenticacaoService autenticacaoService;
+	
+	@Override
+	@Bean
+	protected AuthenticationManager authenticationManager() throws Exception {
+		return super.authenticationManager();
+	}
 	
 	//Configuracoes de autenticacao
 	@Override
@@ -53,20 +63,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.logout()
 //				.logoutSuccessUrl("/public/login.xhtml")
 //				.deleteCookies("JSESSIONID");
-			http
-			.authorizeRequests()
+
+//			http
+//			.authorizeRequests()
+//			.antMatchers("/public/**").permitAll()
+//			.antMatchers("/static/**").permitAll()
+//			.antMatchers("/javax.faces.resource/**").permitAll()
+//			.antMatchers(HttpMethod.POST, "/auth").permitAll()
+//			.anyRequest().authenticated()
+//			.and().formLogin()
+//			.loginPage("/public/login.xhtml").permitAll()
+//			.failureUrl("/public/login.xhtml?error=true")
+//			.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
+//			.and()
+//			.logout()
+//			.logoutSuccessUrl("/public/login.xhtml")
+//			.deleteCookies("JSESSIONID");
+			
+			http.authorizeRequests()
 			.antMatchers("/public/**").permitAll()
 			.antMatchers("/static/**").permitAll()
 			.antMatchers("/javax.faces.resource/**").permitAll()
+			.antMatchers(HttpMethod.POST, "/auth").permitAll()
 			.anyRequest().authenticated()
 			.and().formLogin()
 			.loginPage("/public/login.xhtml").permitAll()
 			.failureUrl("/public/login.xhtml?error=true")
 			.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
-			.and()
-			.logout()
-			.logoutSuccessUrl("/public/login.xhtml")
-			.deleteCookies("JSESSIONID");
+			.and().csrf().disable()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+			
 		}
 		catch (Exception ex) {
 			throw new RuntimeException(ex);
