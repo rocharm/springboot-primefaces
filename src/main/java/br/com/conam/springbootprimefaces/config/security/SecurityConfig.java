@@ -14,6 +14,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import br.com.conam.springbootprimefaces.repository.UsuarioRepository;
+
 
 
 /**
@@ -25,6 +27,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private AutenticacaoService autenticacaoService;
+	
+	@Autowired
+	private TokenService tokenService;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
 	
 	@Override
 	@Bean
@@ -85,8 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/public/**").permitAll()
 			.antMatchers("/static/**").permitAll()
 			.antMatchers("/javax.faces.resource/**").permitAll()
-			.antMatchers(HttpMethod.POST, "/login").permitAll()
-			.antMatchers("/api/**").permitAll()
+			.antMatchers(HttpMethod.POST, "/auth").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -94,7 +102,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.failureUrl("/public/login.xhtml?error=true")
 			.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
 			.and().csrf().disable()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+			.and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class)
+//			.formLogin()
+//			.loginPage("/public/login.xhtml").permitAll()
+//			.failureUrl("/public/login.xhtml?error=true")
+//			.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
+//			.and()
+			.logout()
+			.logoutSuccessUrl("/public/login.xhtml")
+			.deleteCookies("JSESSIONID");
+
 			
 		}
 		catch (Exception ex) {

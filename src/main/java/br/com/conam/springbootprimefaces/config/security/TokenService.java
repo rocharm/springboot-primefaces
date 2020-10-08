@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 
 import br.com.conam.springbootprimefaces.model.Usuario;
 import br.com.conam.springbootprimefaces.utils.UtilityClass;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -57,22 +58,19 @@ public class TokenService {
 	}
 	
 	
-	public static Authentication getAuthentication(HttpServletRequest request) {
-		String token = request.getHeader(HEADER_STRING);
-		
-//		if (token != null) {
-//			// faz parse do token
-//			String user = Jwts.parser()
-//					.setSigningKey(SECRET)
-//					.parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-//					.getBody()
-//					.getSubject();
-//			
-//			if (user != null) {
-//				return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
-//			}
-//		}
-		return null;
+	public boolean isTokenValido(String token) {
+		try {
+			Jwts.parser().setSigningKey(UtilityClass.secret).parseClaimsJws(token);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	
+	public Long getIdUsuario(String token) {
+		Claims claims = Jwts.parser().setSigningKey(UtilityClass.secret).parseClaimsJws(token).getBody();
+		return Long.parseLong(claims.getSubject());
 	}
 
 
