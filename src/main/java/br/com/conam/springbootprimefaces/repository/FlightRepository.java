@@ -7,5 +7,6 @@ import br.com.conam.springbootprimefaces.model.Flight;
 
 public interface FlightRepository extends JpaRepository<Flight, Long>, JpaSpecificationExecutor<Flight> {
 
+	Long countByAirlineAndIdNot(String airline, Long id);
 }
 

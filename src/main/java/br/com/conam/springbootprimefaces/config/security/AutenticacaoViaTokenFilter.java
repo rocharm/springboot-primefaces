@@ -14,9 +14,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import br.com.conam.springbootprimefaces.model.Usuario;
 import br.com.conam.springbootprimefaces.repository.UsuarioRepository;
 
-
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
-	
+
 	private TokenService tokenService;
 	private UsuarioRepository repository;
 
@@ -28,12 +27,14 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		
-		if (request.getRequestURI().startsWith("/rest")) {   
+
+		if (request.getRequestURI().startsWith("/rest")) {
 			String token = recuperarToken(request);
 			boolean valido = tokenService.isTokenValido(token);
 			if (valido) {
 				autenticarCliente(token);
+			} else {
+				SecurityContextHolder.getContext().setAuthentication(null);
 			}
 		}
 		filterChain.doFilter(request, response);
@@ -51,7 +52,7 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 		if (token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
 			return null;
 		}
-		
+
 		return token.substring(7, token.length());
 	}
 

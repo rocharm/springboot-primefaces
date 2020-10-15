@@ -55,60 +55,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) {
 		try {
-			http.csrf().disable();
-//			http
-//				.userDetailsService(userDetailsService())
-//				.authorizeRequests()
-//				.antMatchers("/").permitAll()
-//				.antMatchers("/**.jsf").permitAll()
-//				.antMatchers("/javax.faces.resource/**").permitAll()
-//				.anyRequest().authenticated()
-//				.and()
-//				.formLogin()
-//				.loginPage("/public/login.xhtml")
-//				.permitAll()
-//				.failureUrl("/public/login.xhtml?error=true")
-//				.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
-//				.and()
-//				.logout()
-//				.logoutSuccessUrl("/public/login.xhtml")
-//				.deleteCookies("JSESSIONID");
-
-//			http
-//			.authorizeRequests()
-//			.antMatchers("/public/**").permitAll()
-//			.antMatchers("/static/**").permitAll()
-//			.antMatchers("/javax.faces.resource/**").permitAll()
-//			.antMatchers(HttpMethod.POST, "/auth").permitAll()
-//			.anyRequest().authenticated()
-//			.and().formLogin()
-//			.loginPage("/public/login.xhtml").permitAll()
-//			.failureUrl("/public/login.xhtml?error=true")
-//			.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
-//			.and()
-//			.logout()
-//			.logoutSuccessUrl("/public/login.xhtml")
-//			.deleteCookies("JSESSIONID");
-			
 			http.authorizeRequests()
-			.antMatchers("/public/**").permitAll()
-			.antMatchers("/static/**").permitAll()
-			.antMatchers("/javax.faces.resource/**").permitAll()
-			.antMatchers(HttpMethod.POST, "/auth").permitAll()
-			.anyRequest().authenticated()
-			.and()
+				.antMatchers("/public/**").permitAll()
+				.antMatchers("/static/**").permitAll()
+				.antMatchers("/javax.faces.resource/**").permitAll()
+				.antMatchers(HttpMethod.POST, "/auth").permitAll()
+				.anyRequest().authenticated()
+				.and()
 			.formLogin()
-			.loginPage("/public/login.xhtml").permitAll()
-			.failureUrl("/public/login.xhtml?error=true")
-			.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
-			.and().csrf().disable()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-			.and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class)
-//			.formLogin()
-//			.loginPage("/public/login.xhtml").permitAll()
-//			.failureUrl("/public/login.xhtml?error=true")
-//			.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
-//			.and()
+				.loginPage("/public/login.xhtml").permitAll()
+				.failureUrl("/public/login.xhtml?error=true")
+				.defaultSuccessUrl("/pages/dashboard/dashboard.xhtml")
+				.and()
+			.csrf().disable()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+				.and()
+			.addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class)
 			.logout()
 			.logoutSuccessUrl("/public/login.xhtml")
 			.deleteCookies("JSESSIONID");
@@ -119,6 +81,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			throw new RuntimeException(ex);
 		}
 	}
-
-
 }

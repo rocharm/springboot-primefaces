@@ -78,19 +78,6 @@ public class DashboardController implements Serializable {
 
 	/**
 	 * 
-	 * @return
-	 */
-	public String salvar() {
-		if(flight.getId() == null) {
-			flightService.incluir(flight);
-		} else {
-			flightService.alterar(flight);
-		}
-		return LISTAR;
-	}
-
-	/**
-	 * 
 	 * @param flight
 	 */
 	public void excluir(Flight flight) {

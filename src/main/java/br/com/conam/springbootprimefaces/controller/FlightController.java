@@ -17,11 +17,13 @@ import br.com.conam.springbootprimefaces.filter.ConsultaLazyDataModel;
 import br.com.conam.springbootprimefaces.filter.FlightFiltro;
 import br.com.conam.springbootprimefaces.model.Flight;
 import br.com.conam.springbootprimefaces.service.FlightService;
+import br.com.conam.springbootprimefaces.util.ApplicationException;
+import br.com.conam.springbootprimefaces.util.Mensagem;
 
 @ViewAccessScoped
 @RestController
 @RequestMapping("rest/flight")
-public class FlightController implements Serializable {
+public class FlightController extends AbstractController implements Serializable {
 
 	/**
 	 * 
@@ -80,14 +82,22 @@ public class FlightController implements Serializable {
 	/**
 	 * 
 	 * @return
+	 * @throws ApplicationException 
 	 */
 	public String salvar() {
-		if(flight.getId() == null) {
-			flightService.incluir(flight);
-		} else {
-			flightService.alterar(flight);
+		try {
+			if(flight.getId() == null) {
+				flightService.incluir(flight);
+			} else {
+				flightService.alterar(flight);
+			}
+			Mensagem.setMessage("descricao.required");
+			return LISTAR;
+		} catch (ApplicationException e) {
+			Mensagem.setMessage(e);
+			return null;
 		}
-		return LISTAR;
+		
 	}
 
 	/**
@@ -116,9 +126,11 @@ public class FlightController implements Serializable {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Flight>> obter() {
+	public ResponseEntity<List<Flight>> obter() throws ApplicationException {
 		List<Flight> lista = flightService.findByAirline(null);
-        
+        if(Boolean.TRUE) {
+        	throw new ApplicationException("descricao.required");
+        }
 		return new ResponseEntity<List<Flight>>(lista, HttpStatus.OK);
 	}
 

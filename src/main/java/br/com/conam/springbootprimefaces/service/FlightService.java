@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.conam.springbootprimefaces.model.Flight;
 import br.com.conam.springbootprimefaces.repository.FlightRepository;
+import br.com.conam.springbootprimefaces.util.ApplicationException;
 
 @Service
 public class FlightService {
@@ -24,16 +25,20 @@ public class FlightService {
 	/**
 	 * 
 	 * @param flight
+	 * @throws ApplicationException 
 	 */
-	public void incluir(Flight flight) {
+	public void incluir(Flight flight) throws ApplicationException {
+		validacao(flight);
 		flightRepository.save(flight);
 	}
 	
 	/**
 	 * 
 	 * @param flight
+	 * @throws ApplicationException 
 	 */
-	public void alterar(Flight flight) {
+	public void alterar(Flight flight) throws ApplicationException {
+		validacao(flight);
 		flightRepository.save(flight);
 	}
 	
@@ -73,4 +78,19 @@ public class FlightService {
             }
         });
     }
+	
+	/**
+	 * 
+	 * @param flight
+	 * @throws ApplicationException
+	 */
+	private void validacao(Flight flight) throws ApplicationException {
+		
+		/**
+		 * Airline em duplicidade
+		 */
+		if(flightRepository.countByAirlineAndIdNot(flight.getAirline(), flight.getId() == null ? 0L : flight.getId()) > 0) {
+			throw new ApplicationException("descricao.required");
+		}
+	}
 }
